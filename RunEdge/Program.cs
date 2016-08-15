@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace RunEdge
 {
@@ -10,6 +7,15 @@ namespace RunEdge
     {
         static void Main(string[] args)
         {
+            try
+            {
+                Process.Start($"microsoft-edge:{String.Join(" ", args)}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occured: {ex.Message}");
+                Console.WriteLine(ex.ToString());
+            }
         }
     }
 }
