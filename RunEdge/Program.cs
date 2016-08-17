@@ -10,14 +10,14 @@ namespace RunEdge
             try
             {
                 var uri = String.Join(" ", args);
-                if (String.IsNullOrEmpty(uri)) return;
-
-                Uri uriResult;
-                if (!(Uri.TryCreate(uri, UriKind.Absolute, out uriResult) && (uriResult != null) && ((uriResult.Scheme == Uri.UriSchemeHttp) || (uriResult.Scheme == Uri.UriSchemeHttps))))
+                if (!String.IsNullOrEmpty(uri))
                 {
-                    uri = @"http://" + uri;
+                    Uri uriResult;
+                    if (!(Uri.TryCreate(uri, UriKind.Absolute, out uriResult) && (uriResult != null) && ((uriResult.Scheme == Uri.UriSchemeHttp) || (uriResult.Scheme == Uri.UriSchemeHttps))))
+                    {
+                        uri = @"http://" + uri;
+                    }
                 }
-
                 Process.Start($"microsoft-edge:{uri}");
             }
             catch (Exception ex)
